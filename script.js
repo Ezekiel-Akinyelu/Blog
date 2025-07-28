@@ -46,7 +46,7 @@ const blogPosts = [
         id: '7',
         title: 'Study in Canada',
         summary: 'Everything you need to know about pursuing education in Canada\'s top universities.',
-        image: 'https://images.unsplash.com/photo-1503614472-8c93d56cd6b3?w=400&h=300&fit=crop',
+        image: './images/canada.jpg',
         readTime: '8 min read'
     },
     {
@@ -58,12 +58,50 @@ const blogPosts = [
     }
 ];
 
-// Current layout state
+// Navigation state
+let currentPage = 'main';
 let currentLayout = 'grid';
 
 // DOM elements
+const mainPage = document.getElementById('main-page');
+const blogPostPage = document.getElementById('blog-post-page');
+const comingSoonPage = document.getElementById('coming-soon-page');
 const blogContainer = document.getElementById('blog-container');
 const layoutButtons = document.querySelectorAll('.layout-btn');
+const backToGuidesBtn = document.getElementById('back-to-guides');
+const backFromComingSoonBtn = document.getElementById('back-from-coming-soon');
+
+// Navigation functions
+function showMainPage() {
+    mainPage.classList.remove('hidden');
+    blogPostPage.classList.add('hidden');
+    comingSoonPage.classList.add('hidden');
+    currentPage = 'main';
+    document.title = 'Study Abroad - Your Guide to International Education';
+    window.scrollTo(0, 0);
+}
+
+function showBlogPost(postId) {
+    if (postId === '1') {
+        mainPage.classList.add('hidden');
+        blogPostPage.classList.remove('hidden');
+        comingSoonPage.classList.add('hidden');
+        currentPage = 'blog-post';
+        document.title = 'How to Apply to Schools Abroad - Study Abroad';
+    } else {
+        showComingSoonPage();
+    }
+    window.scrollTo(0, 0);
+}
+
+function showComingSoonPage() {
+    mainPage.classList.add('hidden');
+    blogPostPage.classList.add('hidden');
+    comingSoonPage.classList.remove('hidden');
+    currentPage = 'coming-soon';
+    document.title = 'Coming Soon - Study Abroad';
+    window.scrollTo(0, 0);
+}
 
 // Create blog card HTML
 function createBlogCard(post, layout) {
@@ -71,7 +109,7 @@ function createBlogCard(post, layout) {
     
     if (layout === 'list') {
         return `
-            <article class="${cardClass}">
+            <article class="${cardClass}" data-post-id="${post.id}">
                 <div class="blog-card-image-container">
                     <img src="${post.image}" alt="${post.title}" class="blog-card-image">
                 </div>
@@ -86,13 +124,13 @@ function createBlogCard(post, layout) {
                         </div>
                         <p class="blog-card-summary">${post.summary}</p>
                     </div>
-                    <button class="blog-card-button">Read More</button>
+                    <button class="blog-card-button" data-post-id="${post.id}">Read More</button>
                 </div>
             </article>
         `;
     } else {
         return `
-            <article class="${cardClass}">
+            <article class="${cardClass}" data-post-id="${post.id}">
                 <img src="${post.image}" alt="${post.title}" class="blog-card-image">
                 <div class="blog-card-content">
                     <div class="blog-card-header">
@@ -103,7 +141,7 @@ function createBlogCard(post, layout) {
                         </div>
                     </div>
                     <p class="blog-card-summary">${post.summary}</p>
-                    <button class="blog-card-button">Read More</button>
+                    <button class="blog-card-button" data-post-id="${post.id}">Read More</button>
                 </div>
             </article>
         `;
@@ -118,12 +156,26 @@ function renderBlogPosts(layout) {
     const postsHTML = blogPosts.map(post => createBlogCard(post, layout)).join('');
     blogContainer.innerHTML = postsHTML;
     
-    // Add click event listeners to Read More buttons
+    // Add click event listeners to Read More buttons and cards
     const readMoreButtons = blogContainer.querySelectorAll('.blog-card-button');
-    readMoreButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            alert(`You clicked on "${blogPosts[index].title}". This would typically navigate to the full blog post.`);
+    const blogCards = blogContainer.querySelectorAll('.blog-card');
+    
+    readMoreButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const postId = button.getAttribute('data-post-id');
+            showBlogPost(postId);
         });
+    });
+    
+    blogCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const postId = card.getAttribute('data-post-id');
+            showBlogPost(postId);
+        });
+        
+        // Add cursor pointer style
+        card.style.cursor = 'pointer';
     });
 }
 
@@ -139,9 +191,13 @@ function handleLayoutChange(newLayout) {
         }
     });
     
-    // Update layout
+    // Update layout with animation
     currentLayout = newLayout;
-    renderBlogPosts(currentLayout);
+    showLoading();
+    
+    setTimeout(() => {
+        renderBlogPosts(currentLayout);
+    }, 300);
 }
 
 // Smooth scrolling for navigation links
@@ -153,7 +209,7 @@ function setupSmoothScrolling() {
             const targetId = link.getAttribute('href');
             const targetElement = document.querySelector(targetId);
             
-            if (targetElement) {
+            if (targetElement && currentPage === 'main') {
                 const headerHeight = document.querySelector('.header').offsetHeight;
                 const targetPosition = targetElement.offsetTop - headerHeight;
                 
@@ -166,38 +222,14 @@ function setupSmoothScrolling() {
     });
 }
 
-// Add loading animation
+// Show loading animation
 function showLoading() {
     blogContainer.innerHTML = `
-        <div style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
-            <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #2563eb;"></i>
-            <p style="margin-top: 1rem; color: #6b7280;">Loading guides...</p>
+        <div class="loading-container">
+            <i class="fas fa-spinner loading-icon"></i>
+            <p class="loading-text">Loading guides...</p>
         </div>
     `;
-}
-
-// Initialize the application
-function init() {
-    // Set up layout button event listeners
-    layoutButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const layout = button.dataset.layout;
-            handleLayoutChange(layout);
-        });
-    });
-    
-    // Set up smooth scrolling
-    setupSmoothScrolling();
-    
-    // Show loading state briefly, then render content
-    showLoading();
-    
-    setTimeout(() => {
-        renderBlogPosts(currentLayout);
-    }, 500);
-    
-    // Add some interactive effects
-    setupInteractiveEffects();
 }
 
 // Add interactive effects
@@ -231,6 +263,8 @@ function setupMobileNavigation() {
     let lastScrollY = window.scrollY;
     
     window.addEventListener('scroll', () => {
+        if (currentPage !== 'main') return;
+        
         const currentScrollY = window.scrollY;
         
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -243,21 +277,237 @@ function setupMobileNavigation() {
     });
 }
 
+// Initialize blog post page interactions
+function setupBlogPostInteractions() {
+    // Continue reading button
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+        ctaButton.addEventListener('click', () => {
+            alert('Full guide coming soon! This would typically lead to the complete article or a premium section.');
+        });
+    }
+    
+    // Related article buttons
+    const relatedButtons = document.querySelectorAll('.related-button');
+    relatedButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            showComingSoonPage();
+        });
+    });
+}
+
+// Initialize the application
+function init() {
+    // Set up layout button event listeners
+    layoutButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const layout = button.dataset.layout;
+            handleLayoutChange(layout);
+        });
+    });
+    
+    // Set up navigation button listeners
+    if (backToGuidesBtn) {
+        backToGuidesBtn.addEventListener('click', showMainPage);
+    }
+    
+    if (backFromComingSoonBtn) {
+        backFromComingSoonBtn.addEventListener('click', showMainPage);
+    }
+    
+    // Set up smooth scrolling
+    setupSmoothScrolling();
+    
+    // Show loading state briefly, then render content
+    showLoading();
+    
+    setTimeout(() => {
+        renderBlogPosts(currentLayout);
+    }, 500);
+    
+    // Add interactive effects
+    setupInteractiveEffects();
+    
+    // Set up blog post interactions
+    setupBlogPostInteractions();
+    
+    // Handle browser back/forward buttons
+    setupHistoryNavigation();
+}
+
+// Handle browser history navigation
+function setupHistoryNavigation() {
+    // Push initial state
+    history.replaceState({ page: 'main' }, 'Study Abroad', window.location.pathname);
+    
+    // Handle popstate event
+    window.addEventListener('popstate', (event) => {
+        if (event.state) {
+            switch (event.state.page) {
+                case 'main':
+                    showMainPage();
+                    break;
+                case 'blog-post':
+                    showBlogPost(event.state.postId || '1');
+                    break;
+                case 'coming-soon':
+                    showComingSoonPage();
+                    break;
+                default:
+                    showMainPage();
+            }
+        }
+    });
+    
+    // Override navigation functions to update history
+    const originalShowBlogPost = showBlogPost;
+    const originalShowMainPage = showMainPage;
+    const originalShowComingSoonPage = showComingSoonPage;
+    
+    showBlogPost = function(postId) {
+        originalShowBlogPost(postId);
+        const post = blogPosts.find(p => p.id === postId);
+        const title = post ? `${post.title} - Study Abroad` : 'Study Abroad';
+        history.pushState(
+            { page: 'blog-post', postId }, 
+            title, 
+            `#blog-post-${postId}`
+        );
+    };
+    
+    showMainPage = function() {
+        originalShowMainPage();
+        history.pushState(
+            { page: 'main' }, 
+            'Study Abroad - Your Guide to International Education', 
+            window.location.pathname
+        );
+    };
+    
+    showComingSoonPage = function() {
+        originalShowComingSoonPage();
+        history.pushState(
+            { page: 'coming-soon' }, 
+            'Coming Soon - Study Abroad', 
+            '#coming-soon'
+        );
+    };
+    
+    // Make functions globally accessible
+    window.showMainPage = showMainPage;
+    window.showBlogPost = showBlogPost;
+    window.showComingSoonPage = showComingSoonPage;
+}
+
+// Handle window resize for responsive layout
+window.addEventListener('resize', () => {
+    if (currentPage === 'main') {
+        // Re-render blog posts to ensure proper layout
+        renderBlogPosts(currentLayout);
+    }
+});
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     init();
     setupMobileNavigation();
 });
 
-// Handle window resize for responsive layout
-window.addEventListener('resize', () => {
-    // Re-render blog posts to ensure proper layout
-    renderBlogPosts(currentLayout);
+// Keyboard navigation support
+document.addEventListener('keydown', (e) => {
+    // ESC key to go back to main page
+    if (e.key === 'Escape' && currentPage !== 'main') {
+        showMainPage();
+    }
+    
+    // Number keys to switch layouts on main page
+    if (currentPage === 'main') {
+        switch (e.key) {
+            case '1':
+                handleLayoutChange('grid');
+                break;
+            case '2':
+                handleLayoutChange('list');
+                break;
+            case '3':
+                handleLayoutChange('masonry');
+                break;
+        }
+    }
 });
 
 // Export functions for potential future use
 window.StudyAbroad = {
     renderBlogPosts,
     handleLayoutChange,
-    blogPosts
+    blogPosts,
+    showMainPage,
+    showBlogPost,
+    showComingSoonPage
 };
+
+// Add loading overlay for better UX
+function showPageTransition() {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+    `;
+    overlay.innerHTML = '<i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #2563eb;"></i>';
+    
+    document.body.appendChild(overlay);
+    
+    setTimeout(() => {
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+            document.body.removeChild(overlay);
+        }, 300);
+    }, 500);
+}
+
+// Performance optimization: Lazy load images
+function setupLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        // Apply to future dynamically loaded images
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1) {
+                        const lazyImages = node.querySelectorAll && node.querySelectorAll('img[data-src]');
+                        if (lazyImages) {
+                            lazyImages.forEach(img => imageObserver.observe(img));
+                        }
+                    }
+                });
+            });
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+}
+
+// Initialize lazy loading
+setupLazyLoading();
