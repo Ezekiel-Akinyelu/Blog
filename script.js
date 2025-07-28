@@ -4,7 +4,7 @@ const blogPosts = [
         id: '1',
         title: 'How to Apply to Schools Abroad',
         summary: 'Complete step-by-step guide to navigate the application process for international universities.',
-        image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1',
+        image: './How.jpg',
         readTime: '8 min read'
     },
     {
