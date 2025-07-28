@@ -8,112 +8,289 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-graduation-cap logo-icon"></i>
-                    <span class="logo-text">Study Abroad</span>
-                </div>
-                <nav class="nav">
-                    <a href="#guides" class="nav-link">Guides</a>
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Welcome to Study Abroad</h1>
-                <p class="hero-description">
-                    Are you dreaming of studying in a foreign country? You've just found the right place.
-                    Study Abroad is a dedicated platform built to help international students like you find the best schools, 
-                    secure scholarships, understand visa processes, and prepare for life abroad — without confusion or overwhelm.
-                    Whether you're just exploring or already making plans, this site is your starting point.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Guides Section -->
-    <section id="guides" class="blog-guides">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Navigate through our carefully written guides:</h2>
-                <p class="section-description">
-                    Discover comprehensive resources to help you succeed in your international education journey.
-                </p>
-            </div>
-
-            <div class="layout-switcher">
-                <div class="layout-buttons">
-                    <button class="layout-btn active" data-layout="grid">
-                        <i class="fas fa-th"></i>
-                        Grid
-                    </button>
-                    <button class="layout-btn" data-layout="list">
-                        <i class="fas fa-list"></i>
-                        List
-                    </button>
-                    <button class="layout-btn" data-layout="masonry">
-                        <i class="fas fa-columns"></i>
-                        Masonry
-                    </button>
-                </div>
-            </div>
-
-            <div id="blog-container" class="blog-container grid-layout">
-                <!-- Blog posts will be inserted here by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <i class="fas fa-graduation-cap footer-logo-icon"></i>
-                        <span class="footer-logo-text">Study Abroad</span>
+    <!-- Main Page Content -->
+    <div id="main-page">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-graduation-cap logo-icon"></i>
+                        <span class="logo-text">Study Abroad</span>
                     </div>
-                    <p class="footer-description">
-                        Your trusted companion for international education. 
-                        Helping students worldwide achieve their academic dreams.
+                    <nav class="nav">
+                        <a href="#guides" class="nav-link">Guides</a>
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Welcome to Study Abroad</h1>
+                    <p class="hero-description">
+                        Are you dreaming of studying in a foreign country? You've just found the right place.
+                        Study Abroad is a dedicated platform built to help international students like you find the best schools, 
+                        secure scholarships, understand visa processes, and prepare for life abroad — without confusion or overwhelm.
+                        Whether you're just exploring or already making plans, this site is your starting point.
                     </p>
                 </div>
-                
-                <div class="footer-section">
-                    <h3 class="footer-heading">Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#guides">Guides</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#privacy">Privacy Policy</a></li>
-                    </ul>
+            </div>
+        </section>
+
+        <!-- Blog Guides Section -->
+        <section id="guides" class="blog-guides">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Navigate through our carefully written guides:</h2>
+                    <p class="section-description">
+                        Discover comprehensive resources to help you succeed in your international education journey.
+                    </p>
+                </div>
+
+                <div class="layout-switcher">
+                    <div class="layout-buttons">
+                        <button class="layout-btn active" data-layout="grid">
+                            <i class="fas fa-th"></i>
+                            Grid
+                        </button>
+                        <button class="layout-btn" data-layout="list">
+                            <i class="fas fa-list"></i>
+                            List
+                        </button>
+                        <button class="layout-btn" data-layout="masonry">
+                            <i class="fas fa-columns"></i>
+                            Masonry
+                        </button>
+                    </div>
+                </div>
+
+                <div id="blog-container" class="blog-container grid-layout">
+                    <!-- Blog posts will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <i class="fas fa-graduation-cap footer-logo-icon"></i>
+                            <span class="footer-logo-text">Study Abroad</span>
+                        </div>
+                        <p class="footer-description">
+                            Your trusted companion for international education. 
+                            Helping students worldwide achieve their academic dreams.
+                        </p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-heading">Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="#guides">Guides</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#privacy">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-heading">Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h3 class="footer-heading">Follow Us</h3>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Study Abroad. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Blog Post Page -->
+    <div id="blog-post-page" class="blog-post-page hidden">
+        <!-- Blog Post Header -->
+        <header class="blog-post-header">
+            <div class="container">
+                <button id="back-to-guides" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Guides
+                </button>
+            </div>
+        </header>
+
+        <!-- Blog Post Hero -->
+        <div class="blog-post-hero">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1" 
+                 alt="How to Apply to Schools Abroad" class="blog-post-hero-image">
+            <div class="blog-post-hero-overlay">
+                <div class="container">
+                    <div class="blog-post-hero-content">
+                        <h1 class="blog-post-title">How to Apply to Schools Abroad</h1>
+                        <div class="blog-post-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>8 min read</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>January 2025</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Study Abroad. All rights reserved.</p>
-            </div>
         </div>
-    </footer>
+
+        <!-- Blog Post Content -->
+        <article class="blog-post-content">
+            <div class="container">
+                <div class="article-content">
+                    <!-- Section 1 -->
+                    <section class="article-section">
+                        <h2 class="section-heading">Section 1: Introduction — Why Applying Properly Matters</h2>
+                        
+                        <p>
+                            Applying to schools abroad is more than just a formality—it's a strategic, life-changing process. 
+                            Whether you're aiming for undergraduate, postgraduate, or professional studies, the way you approach 
+                            your international school application can determine not just whether you're accepted, but where, how soon, 
+                            and how well-funded your education will be.
+                        </p>
+
+                        <p>
+                            Many students rush into applying with the mindset of "just try and see," but this often leads to wasted 
+                            opportunities, missed deadlines, and poorly presented profiles. In today's competitive academic world, 
+                            global universities are not just looking for students with good grades—they're seeking purpose-driven 
+                            individuals, those who understand why they're applying and what value they can bring to their institutions.
+                        </p>
+
+                        <h3 class="subsection-heading">The Global Rush: Why Everyone Wants to Study Abroad</h3>
+
+                        <p>
+                            Over the last decade, international education has evolved into a global trend. Students from developing 
+                            nations are increasingly applying to schools in the USA, Canada, the UK, Germany, Australia, and several 
+                            other countries. The benefits are clear:
+                        </p>
+
+                        <ul class="article-list">
+                            <li>Better academic standards</li>
+                            <li>Exposure to world-class faculty and facilities</li>
+                            <li>Opportunity to build global networks</li>
+                            <li>Access to advanced research and innovation</li>
+                            <li>More employable qualifications</li>
+                        </ul>
+
+                        <p>
+                            However, what many don't see is the unseen competition. For every open slot in a top-tier university, 
+                            there are hundreds—sometimes thousands—of applicants from around the world. Most of them are qualified 
+                            on paper. So what makes the difference?
+                        </p>
+
+                        <h3 class="subsection-heading">What Makes a Successful Application?</h3>
+
+                        <p>
+                            A successful international school application isn't about having perfect scores or the best grades. 
+                            It's about strategy. It's about how you position yourself in your documents, how timely you are in 
+                            meeting requirements, and how deeply you understand the school's mission, culture, and expectations.
+                        </p>
+
+                        <p>Here's what truly successful applicants often do right:</p>
+
+                        <ul class="article-list">
+                            <li>They choose schools that match their goals, not just famous ones.</li>
+                            <li>They craft personalized Statements of Purpose that tell a compelling story.</li>
+                            <li>They get strong recommendation letters that truly speak to their character.</li>
+                            <li>They apply early, sometimes during priority windows.</li>
+                            <li>They show financial preparedness or apply for scholarships properly.</li>
+                        </ul>
+
+                        <h3 class="subsection-heading">Why You Should Take This Process Seriously</h3>
+
+                        <p>
+                            Think about it like this: if you're spending thousands of dollars on tuition, accommodation, travel, 
+                            and other fees, why not invest maximum effort into securing the best school, at the best time, with 
+                            the best funding possible?
+                        </p>
+
+                        <p>
+                            The truth is, small mistakes can cost big opportunities. Forgetting to attach a document, writing a 
+                            generic SOP, applying too late, or choosing the wrong program are all errors that many students regret 
+                            later. But with the right guidance and approach, you can avoid those pitfalls and make your application 
+                            stand out in any admissions pool.
+                        </p>
+
+                        <h3 class="subsection-heading">What You'll Learn in This Article</h3>
+
+                        <p>
+                            This complete guide will walk you through everything you need to know about applying to schools abroad—from 
+                            how to pick the right program to how to write documents that open doors. Each section builds on the last 
+                            to give you a full understanding of:
+                        </p>
+
+                        <ul class="article-list">
+                            <li>How to research and compare international schools</li>
+                            <li>How to prepare your application documents</li>
+                            <li>How to write your SOP and request recommendations</li>
+                            <li>How to apply for scholarships or financial aid</li>
+                            <li>How to handle interviews and offers</li>
+                        </ul>
+
+                        <p>
+                            Whether you're starting from scratch or halfway through your application, this article is designed to 
+                            equip you with clarity and confidence.
+                        </p>
+                    </section>
+
+                    <!-- Call to Action -->
+                    <div class="call-to-action">
+                        <h3>Ready to Start Your Application Journey?</h3>
+                        <p>
+                            This was just the introduction. The complete guide includes detailed sections on research, document 
+                            preparation, scholarship applications, and much more.
+                        </p>
+                        <button class="cta-button">Continue Reading Full Guide</button>
+                    </div>
+
+                    <!-- Related Articles -->
+                    <div class="related-articles">
+                        <h3>Related Articles</h3>
+                        <div class="related-grid">
+                            <div class="related-card">
+                                <h4>Top Scholarships You Shouldn't Miss</h4>
+                                <p>Discover the best scholarship opportunities available for international students worldwide.</p>
+                                <button class="related-button">Read More</button>
+                            </div>
+                            <div class="related-card">
+                                <h4>Complete Student Visa Guide</h4>
+                                <p>Everything you need to know about obtaining a student visa for your destination country.</p>
+                                <button class="related-button">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Coming Soon Page -->
+    <div id="coming-soon-page" class="coming-soon-page hidden">
+        <div class="coming-soon-content">
+            <h2>Blog Post Coming Soon</h2>
+            <p>This blog post is currently being written. Check back soon!</p>
+            <button id="back-from-coming-soon" class="back-button-large">Back to Guides</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
