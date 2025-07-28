@@ -46,7 +46,7 @@ const blogPosts = [
         id: '7',
         title: 'Study in Canada',
         summary: 'Everything you need to know about pursuing education in Canada\'s top universities.',
-        image: './images/canada.jpg',
+        image: './canada.jpg',
         readTime: '8 min read'
     },
     {
