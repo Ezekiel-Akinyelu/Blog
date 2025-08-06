@@ -39,7 +39,7 @@ const blogPosts = [
         id: '6',
         title: 'Study in Germany',
         summary: 'Your comprehensive guide to studying in Germany, from applications to living costs.',
-        image: 'https://images.unsplash.com/photo-1503614472-8c93d56cd6b3?w=400&h=300&fit=crop',
+        image: 'canada.jpg',
         readTime: '9 min read'
     },
     {
@@ -53,7 +53,7 @@ const blogPosts = [
         id: '8',
         title: 'Study in the US',
         summary: 'Navigate the complex US education system with our detailed guide for international students.',
-        image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop',
+        image: 'How.jpg',
         readTime: '11 min read'
     }
 ];
