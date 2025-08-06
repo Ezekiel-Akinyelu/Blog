@@ -491,6 +491,21 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.intro-text {
+    font-size: 1.25rem !important;
+    color: #6b7280 !important;
+    font-weight: 400;
+    line-height: 1.75 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.conclusion-emphasis {
+    font-size: 1.25rem !important;
+    font-weight: 500 !important;
+    color: #2563eb !important;
+    margin-bottom: 2rem !important;
+}
+
 .article-list {
     list-style: disc;
     padding-left: 1.5rem;
@@ -502,6 +517,11 @@ body {
     line-height: 1.7;
     color: #374151;
     margin-bottom: 0.5rem;
+}
+
+.article-list li strong {
+    color: #1f2937;
+    font-weight: 600;
 }
 
 @media (min-width: 768px) {
@@ -807,6 +827,14 @@ body {
     
     .article-content p {
         font-size: 1rem;
+    }
+    
+    .intro-text {
+        font-size: 1.125rem !important;
+    }
+    
+    .conclusion-emphasis {
+        font-size: 1.125rem !important;
     }
     
     .article-list li {
