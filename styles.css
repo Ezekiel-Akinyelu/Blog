@@ -249,11 +249,6 @@ body {
     }
 }
 
-/* Ad container */
-.ad-container:not(:first-of-type) {
-    display: none !important;
-}
-
 /* Blog Card */
 .blog-card {
     background: white;
